@@ -146,7 +146,7 @@ def c2b(request):
     api_url = MpesaC2bCredential.MPESA_URL
     conn = http.client.HTTPSConnection(api_url)
     request1 = "{\r\n        " \
-              "\"ShortCode\": \"" + str(LipanaMpesaPpassword.Testc2b_short_code) + "\",\r\n        " \
+              "\"ShortCode\": \"" + str(LipanaMpesaPpassword.Business_short_code) + "\",\r\n        " \
               "\"CommandID\": \"CustomerPayBillOnline\",\r\n        " \
               "\"Amount\": \"1\",\r\n        " \
               "\"Msisdn\": \"254796525626\",\r\n        " \
