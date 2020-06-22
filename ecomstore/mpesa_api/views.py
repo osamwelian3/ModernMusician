@@ -45,7 +45,7 @@ def lipa_na_mpesa_online(request):
                   "\"PartyA\": 254796525626,\r\n        " \
                   "\"PartyB\": " + str(LipanaMpesaPpassword.Business_short_code) + ",\r\n        " \
                   "\"PhoneNumber\": 254796525626,\r\n        " \
-                  "\"CallBackURL\": \"https://873e2d51dd67.ngrok.io/api/v1/c2b/confirmation/\",\r\n        " \
+                  "\"CallBackURL\": \"https://4b655c571beb.ngrok.io/api/v1/c2b/callback\",\r\n        " \
                   "\"AccountReference\": \"SAMIAN LTD\",\r\n        " \
                   "\"TransactionDesc\": \"Test\"\r\n    " \
                   "}"
@@ -116,10 +116,10 @@ def register_urls(request):
     api_url = MpesaC2bCredential.MPESA_URL
     conn = http.client.HTTPSConnection(api_url)
     payload = "{\r\n        " \
-              "\"ShortCode\": \"" + str(LipanaMpesaPpassword.Testc2b_short_code) + "\",\r\n        " \
+              "\"ShortCode\": \"" + str(LipanaMpesaPpassword.Business_short_code) + "\",\r\n        " \
               "\"ResponseType\": \"Completed\",\r\n        " \
-              "\"ConfirmationURL\": \"https://873e2d51dd67.ngrok.io/api/v1/c2b/confirmation\",\r\n        " \
-              "\"ValidationURL\": \"https://873e2d51dd67.ngrok.io/api/v1/c2b/validation\"\r\n        " \
+              "\"ConfirmationURL\": \"https://4b655c571beb.ngrok.io/api/v1/c2b/confirmation\",\r\n        " \
+              "\"ValidationURL\": \"https://4b655c571beb.ngrok.io/api/v1/c2b/validation\"\r\n        " \
               "}"
     headers = {
         'Authorization': 'Bearer %s' % access_token,
@@ -137,7 +137,10 @@ def register_urls(request):
 
 @csrf_exempt
 def call_back(request):
-    pass
+    mpesa_body = request.body.decode('utf-8')
+    mpesa_payment = json.loads(mpesa_body)
+    print(mpesa_payment)
+    return HttpResponse(mpesa_payment)
 
 
 @csrf_exempt
@@ -149,7 +152,7 @@ def c2b(request):
               "\"ShortCode\": \"" + str(LipanaMpesaPpassword.Business_short_code) + "\",\r\n        " \
               "\"CommandID\": \"CustomerPayBillOnline\",\r\n        " \
               "\"Amount\": \"1\",\r\n        " \
-              "\"Msisdn\": \"254796525626\",\r\n        " \
+              "\"Msisdn\": \"254708374149\",\r\n        " \
               "\"BillRefNumber\": \"Test c2b\"\r\n        " \
               "}"
     headers = {

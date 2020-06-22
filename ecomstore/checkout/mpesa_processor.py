@@ -1,4 +1,3 @@
-
 import json
 from mpesa_api.mpesa_credentials import validated_mpesa_access_token, LipanaMpesaPpassword, MpesaC2bCredential
 from cart import cart
